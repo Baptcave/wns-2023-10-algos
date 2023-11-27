@@ -52,17 +52,17 @@
 
 export default function ({ ads }: { ads: Ad[] }): MonthAds[] {
   const getISOFormattedMonth = (date: string): Date => {
-    const month = new Date(date).getUTCMonth() + 1;
-    const year = new Date(date).getUTCFullYear();
-    const ISOMonth = new Date(year, month);
+    const month: number = new Date(date).getUTCMonth() + 1;
+    const year: number = new Date(date).getUTCFullYear();
+    const ISOMonth: Date = new Date(year, month);
     ISOMonth.setUTCDate(1);
     ISOMonth.setUTCHours(0);
 
     return ISOMonth;
   };
 
-  const adsWithMonth = ads.map(
-    (ad) => {
+  const adsWithMonth: AdWithMonth[] = ads.map(
+    (ad: Ad): AdWithMonth => {
       return {
         ...ad,
         month: getISOFormattedMonth(ad.createdAt).getTime()
@@ -72,13 +72,13 @@ export default function ({ ads }: { ads: Ad[] }): MonthAds[] {
 
   let monthSet: Set<number> = new Set();
 
-  adsWithMonth.forEach((ad) => {
+  adsWithMonth.forEach((ad: AdWithMonth): void => {
     monthSet.add(ad.month);
   });
 
-  const months: number[] = Array.from(monthSet).sort((a,b) => a-b);
+  const months: number[] = Array.from(monthSet).sort((a: number, b: number): number => a - b);
 
-  const adsSortedByMonth: MonthAds[] = months.map((month) => {
+  const adsSortedByMonth: MonthAds[] = months.map((month: number): MonthAds => {
     const ads: Ad[] = [];
       return {
         month: new Date(month).toISOString(),
@@ -87,10 +87,10 @@ export default function ({ ads }: { ads: Ad[] }): MonthAds[] {
     }
   );
 
-  adsWithMonth.forEach((ad) => {
+  adsWithMonth.forEach((ad: AdWithMonth): void => {
     adsSortedByMonth
       .filter(
-        (adSorted) => new Date(adSorted.month).getTime() === ad.month
+        (adSorted: MonthAds): boolean => new Date(adSorted.month).getTime() === ad.month
       )[0]
       .ads
       .push(
@@ -102,6 +102,12 @@ export default function ({ ads }: { ads: Ad[] }): MonthAds[] {
   });
 
   return adsSortedByMonth;
+}
+
+export interface AdWithMonth {
+  month: number,
+  title: string,
+  createdAt: string
 }
 
 
