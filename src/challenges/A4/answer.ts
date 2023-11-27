@@ -49,11 +49,61 @@
  */
 
 // ↓ uncomment bellow lines and add your response!
-/* 
+
 export default function ({ ads }: { ads: Ad[] }): MonthAds[] {
-  return [];
+  const getISOFormattedMonth = (date: string): Date => {
+    const month = new Date(date).getUTCMonth() + 1;
+    const year = new Date(date).getUTCFullYear();
+    const ISOMonth = new Date(year, month);
+    ISOMonth.setUTCDate(1);
+    ISOMonth.setUTCHours(0);
+
+    return ISOMonth;
+  };
+
+  const adsWithMonth = ads.map(
+    (ad) => {
+      return {
+        ...ad,
+        month: getISOFormattedMonth(ad.createdAt).getTime()
+      }
+    }
+  );
+
+  let monthSet: Set<number> = new Set();
+
+  adsWithMonth.forEach((ad) => {
+    monthSet.add(ad.month);
+  });
+
+  const months: number[] = Array.from(monthSet).sort((a,b) => a-b);
+
+  const adsSortedByMonth: MonthAds[] = months.map((month) => {
+    const ads: Ad[] = [];
+      return {
+        month: new Date(month).toISOString(),
+        ads
+      }
+    }
+  );
+
+  adsWithMonth.forEach((ad) => {
+    adsSortedByMonth
+      .filter(
+        (adSorted) => new Date(adSorted.month).getTime() === ad.month
+      )[0]
+      .ads
+      .push(
+        {
+          title: ad.title,
+          createdAt: ad.createdAt
+        }
+      )
+  });
+
+  return adsSortedByMonth;
 }
- */
+
 
 // used interfaces, do not touch
 export interface Ad {
