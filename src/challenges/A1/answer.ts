@@ -7,11 +7,13 @@
  */
 
 // ↓ uncomment bellow lines and add your response!
-/*
-export default function ({ ads }: { ads: Ad[] }): Ad[] {
-  return [];
-}
-*/
+
+// export default function ({ ads }: { ads: Ad[] }): Ad[] {
+//   const sortedAds = ads.sort((a, b) => {return a.price - b.price || a.title.localeCompare(b.title)});
+
+//   return sortedAds;
+// }
+
 
 // used interfaces, do not touch
 export interface Ad {

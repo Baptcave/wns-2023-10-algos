@@ -10,15 +10,36 @@
  */
 
 // ↓ uncomment bellow lines and add your response!
-/* 
-export default function ({
-  ads,
-}: {
-  ads: AdWithTags[];
-}): AdWithTagsAndClosestAds[] {
-  return [];
-}
- */
+
+// export default function ({
+//   ads,
+// }: {
+//   ads: AdWithTags[];
+// }): AdWithTagsAndClosestAds[] {
+//   const adsWithClosestAds: AdWithTagsAndClosestAds[] = [];
+
+//   ads.forEach((ad) => {
+//     const closestAds: AdWithTags[] = [];
+
+//     ad.tags.forEach((tag) => {
+//       for (let i = 0; i < ads.length; i++) {
+//         if (ads[i].title !== ad.title) {
+//           for (let j = 0; j < ads[i].tags.length; j++) {
+//             if (tag === ads[i].tags[j]) {
+//               closestAds.push(ads[i]);
+//             }
+//           }
+//         }
+        
+//       }
+//     })
+
+//     adsWithClosestAds.push({...ad, closestAds})
+//   })
+  
+//   return adsWithClosestAds;
+// }
+
 
 // used interfaces, do not touch
 export interface AdWithTags {

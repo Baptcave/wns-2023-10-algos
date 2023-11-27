@@ -9,15 +9,35 @@
  */
 
 // ↓ uncomment bellow lines and add your response!
-/* 
-export default function ({
-  messages,
-}: {
-  messages: MessageWithImages[];
-}): string[] {
-  return []
-}
- */
+
+// export default function ({
+//   messages,
+// }: {
+//   messages: MessageWithImages[];
+// }): string[] {
+//   const sortMessages = (messages: MessageWithImages[]): MessageWithImages[] => {
+//     return messages.sort((a, b) => {
+//       return new Date(a.sentAt).getTime() - new Date(b.sentAt).getTime() || a.content.length - b.content.length
+//     });
+//   }
+
+//   const getImagesList = (messages: MessageWithImages[]): string[] => {
+//     let imagesSet: Set<string> = new Set();
+
+//     messages.forEach((message) => {
+//       message.images.forEach((image) => {
+//         imagesSet.add(image);
+//       })
+//     })
+
+//     return Array.from(imagesSet);
+//   }
+
+//   const imagesList: string[] = getImagesList(sortMessages(messages));
+
+//   return imagesList;
+// }
+
 
 // used interfaces, do not touch
 export interface MessageWithImages {

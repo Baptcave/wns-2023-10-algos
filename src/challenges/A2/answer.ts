@@ -9,15 +9,31 @@
  */
 
 // ↓ uncomment bellow lines and add your response!
-/*
-export default function ({
-  categories,
-}: {
-  categories: Category[];
-}): CategoryWithTags[] {
-  return [];
-}
-*/
+
+// export default function ({
+//   categories,
+// }: {
+//   categories: Category[];
+// }): CategoryWithTags[] {
+//   const categoriesWithTags: CategoryWithTags[] = [];
+
+//   categories.forEach((category) => {
+//     let categoryTagsSet: Set<string> = new Set();
+
+//     category.ads.forEach((ad) => {
+//       ad.tags.forEach((tag) => {
+//         categoryTagsSet.add(tag);
+//       })
+//     })
+
+//     const categoryTags: string[] = Array.from(categoryTagsSet).sort();
+
+//     categoriesWithTags.push({...category, tags: categoryTags});
+//   })
+
+//   return categoriesWithTags;
+// }
+
 
 // used interfaces, do not touch
 interface Ad {
