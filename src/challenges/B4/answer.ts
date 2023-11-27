@@ -27,12 +27,53 @@
  * @returns Sorted list of days (only days with messages!) with a list of sorted messages of the day
  */
 
+import { log } from "console";
+
 // ↓ uncomment bellow lines and add your response!
-/* 
+
 export default function ({ messages }: { messages: Message[] }): DayMessages[] {
-  return [];
+  const getISOFormattedDay = (date: string): string => {
+    const dateDay: number = new Date(date).getUTCDate();
+    const month: number = new Date(date).getUTCMonth() + 1;
+    const year: number = new Date(date).getUTCFullYear();
+    
+    const ISODay: Date = new Date(year, month);
+    ISODay.setUTCDate(dateDay);
+    ISODay.setUTCHours(0);    
+
+    return ISODay.toISOString();
+  };
+
+  let daysSet: Set<string> = new Set();
+
+  messages.forEach((message: Message): void => {
+    daysSet.add(getISOFormattedDay(message.sentAt));
+  })
+
+  const days: string[] = Array.from(daysSet).sort(
+    (a: string, b: string): number => new Date(a).getTime() - new Date(b).getTime()
+  );
+
+  const dayMessages: DayMessages[] = days.map((day: string): DayMessages => {
+    const dayFilteredMessages: Message[] = messages.filter((message: Message): boolean => {      
+      return getISOFormattedDay(message.sentAt) === day
+    })
+
+    return {
+      day: day,
+      messages: dayFilteredMessages
+    }
+  })
+
+  dayMessages.forEach((dayMessage: DayMessages): void => {
+    dayMessage.messages.sort(
+      (a: Message, b: Message): number => new Date(a.sentAt).getTime() - new Date(b.sentAt).getTime()
+    )
+  })
+
+  return dayMessages;
 }
- */
+
 // used interfaces, do not touch
 export interface Message {
   content: string;
